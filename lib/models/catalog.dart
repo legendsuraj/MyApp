@@ -5,7 +5,7 @@ class CatalogModel {
     Item(
       id: 1,
       name: "Iphone 12",
-      desc: "BEst PHeinw",
+      desc: "Best Phone",
       price: 999,
       color: "#33505a",
       image: "https://m.media-amazon.com/images/I/71v2jVh6nIL._AC_UF1000,1000_QL80_.jpg",
