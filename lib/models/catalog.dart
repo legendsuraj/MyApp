@@ -1,7 +1,5 @@
  class CatalogModel {
-  static List <Item> items =[
-
-  ];
+  static List <Item> items =[];
 }
 
 class Item {
@@ -14,7 +12,7 @@ class Item {
 
   Item({required this.id, required this.name, required this.desc, required this.price, required this.color, required this.image});
 
-  factory Item.fromMap(Map<dynamic, dynamic> map) {
+  factory Item.fromMap(Map<String,dynamic> map) {
     return Item(
       id: map['id'],
       name: map['name'],
