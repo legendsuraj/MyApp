@@ -22,8 +22,9 @@ class _HomepageState extends State<Homepage> {
   }
 
 loadData() async{
+    await Future.delayed(Duration(seconds: 1));
     final productjson =
-    await rootBundle.loadString("assets/files.product.json");
+    await rootBundle.loadString("assets/files/product.json");
     final decodedData = jsonDecode(productjson);
     var productsData= decodedData["products"];
     CatalogModel.items = List.from(productsData)
@@ -44,14 +45,53 @@ loadData() async{
       ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: ListView.builder(
-            itemCount: CatalogModel.items.length,
-            itemBuilder: (context, index) {
-              return ItemWidget(
-                item: CatalogModel.items[index],
-              );
-          },
+          child: (CatalogModel.items!= null && CatalogModel.items.isNotEmpty)
+              ? GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+              mainAxisSpacing: 16,
+              crossAxisSpacing: 16,
           ),
+            itemBuilder:(Context, index){
+                final item =CatalogModel.items[index];
+                return Card(
+                  clipBehavior: Clip.antiAlias,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)
+                  ),
+                  child: GridTile(
+                    header: Container(
+                        child: Text(item.name,
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                        ),
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.blue,
+                    ),
+                    ),
+                    child: Image.network(item.image),
+                    footer: Container(
+                      child: Text(item.price.toString(),
+                      style: TextStyle(
+                          color: Colors.white,
+                      ),
+                      ),
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                );
+            },
+          )
+             : Center(
+
+                child: CircularProgressIndicator(),
+              )
+
         ),
       drawer: Mydrawer(),
       );

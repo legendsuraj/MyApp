@@ -1,15 +1,6 @@
-import 'dart:convert';
-import 'package:flutter/services.dart';
-class CatalogModel {
+ class CatalogModel {
   static List <Item> items =[
-    Item(
-      id: 1,
-      name: "Iphone 12",
-      desc: "Best Phone",
-      price: 999,
-      color: "#33505a",
-      image: "https://m.media-amazon.com/images/I/71v2jVh6nIL._AC_UF1000,1000_QL80_.jpg",
-    )
+
   ];
 }
 
